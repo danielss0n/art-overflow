@@ -1,0 +1,19 @@
+<div class="body-posts">
+
+        {{#each posts}}
+            
+            <div class="post">
+                <div class="user-container">
+                    <img src="" class="user-img">
+                    <a href="" class="user-name">Nome Completo</a>
+                    <p class="user-level">Iniciante</p>
+                </div>
+                <img class="post-img" src='images/posts/{{this.image}}'>
+                <div class="description-post-container">
+                    <h1 class="post-title">{{this.title}}</h1>
+                    <p class="post-description">{{this.description}}</p>
+                </div>
+            </div>
+        {{/each}}
+
+</div>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/posts-styles.css">
+    <nav class="navbar">
+        
+        
+        <ul>
+            
+            
+            {{#if session.userid}}
+                <a href="/home/dashboard" class="a2">
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </a>
+                <a href="/users/logout" class="a2">
+                    <li><a href="/users/logout">Sair</a></li>
+                </a>
+            {{else}}
+            <a href="/users/login" class="a2">
+                <li><a href="/users/login">Login</a></li>
+            </a>
+
+            <a href="/users/register" class="a2">
+            <li><a href="/users/register">Registrar</a></li>
+            </a>
+            {{/if}}
+
+            <li id="search-li">
+                <input type="text" id="nav-search" placeholder="Procure algo...">
+                <i class="bi bi-search fa-4x" ></i>
+            </li>
+
+            <li id="nav-list">
+                <i class="bi bi-list"></i>
+            </li>
+            
+            <li id="logo">
+                <a href="/posts">
+                <img src="">
+                <span>Art Overflow</span></a> 
+            </a>
+            </li>
+
+        </ul>
+
+        
+    </nav>
+
+        {{{body}}}
+    
+</body>
+</html>
