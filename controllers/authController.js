@@ -1,32 +1,38 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
+const sessionRedirect = require('../helpers/session-redirect')
 
 
-module.exports = class userController {
+module.exports = class authController {
     static registerPage(req, res) {
-        res.render('users/register')
+        res.render('auth/register')
     }
 
     static loginPage(req, res) {
-        res.render('users/login')
+        res.render('auth/login')
     }
 
     static async register(req, res) {
         const {name, email, password, passwordConfirm} = req.body
-        const verifyUser = await User.findOne({where: {email: email}}).lean()
+        const checkIfUserExists = await User.findOne({where: {email: email}})
         
 
         function showMessage(msg) {
             req.flash('message', msg)
-            res.render('users/register')
+            res.render('auth/register')
         }
+
+        if(checkIfUserExists){
+
+            req.flash('message', 'O email já está cadastrado')
+            res.render('auth/register')
+
+            return
+        }
+
 
         const saltRounds = 10;
         
-            if ( email == verifyUser.email ) {
-                showMessage('Email já cadastrado')
-                return
-            }
             if (name ==='' || email === '' || password === '' || passwordConfirm === '') {
                 showMessage('Preencha todos os campos')
                 return
@@ -69,50 +75,42 @@ module.exports = class userController {
     
 
     static async login(req, res) {
-        const email = req.body.email
-        const password = req.body.password
-        const saltRounds = 10;
+        const { email, password } = req.body
 
-
-
+        //find user 
         const user = await User.findOne({where: {email: email}})
-          
-        function showMessage(msg) {
-            req.flash('message', msg)
-            res.render('users/login')
-        }
         
-        if( email === '' || password ==='') {
-            showMessage('Preencha todos os campos')
-            return
-        } 
-        
-        const passwordHash = user.password
-        const passwordMatch = bcrypt.compareSync(password, passwordHash)
+        if(!user) {
+            req.flash('message', 'Usuario não encontrado')
+            res.render('auth/login')
 
-        if (!user) {
-            showMessage('Usuário não cadastrado')
             return
         }
+        console.log(user.password)
+        const passwordMatch = bcrypt.compareSync(password, user.password)
 
-        if (!passwordMatch) {
-            showMessage('Senha incorreta');
+
+
+        if(!passwordMatch) {
+            req.flash('message', 'senha erada kkk' )
+            res.render('auth/login')
+
             return
-        }
-        
-    
-        req.session.userid = user.id
+        } else {
+            req.flash('message', 'parabens' )
 
-        req.session.save(() => {
-            res.redirect('/posts')
-        })
-               
-        
+            req.session.userid = user.id
+
+            req.session.save(() => {
+                res.redirect('/posts')
+            })
+        }
+        //check password
         
     }   
 
     static logout(req, res) {
         req.session.destroy()
-        res.redirect('/users/login')
+        res.redirect('/login')
     }
 }

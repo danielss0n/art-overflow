@@ -1,0 +1,24 @@
+
+<div class="form-area">
+    <div>
+        <a href="/posts/dashboard">Voltar</a>
+        <br><br>
+    <form action="/posts/create" method="post">
+    {{#if messages.message}}
+        <div class="message">
+            <i class="bi bi-info-circle fa-4x" ></i>
+            {{messages.message}}
+        </div>  
+    {{/if}}
+    <div class="title-area">
+        <input type="text" name="title" placeholder="Titulo" autocomplete="off">
+    </div>
+    <div class="description-area">
+        <input type="text" name="description" placeholder="Descrição" autocomplete="off">
+    </div>
+        <input type="file" id="file" name="filename" value="Adicionar imagem">
+        <input type="submit" value="Postar">
+    </form>    
+    </div>
+</div>
+

@@ -1,10 +1,16 @@
-const mongoose = require('mongoose')
+const { Sequelize } = require('sequelize')
 
-async function main() {
-  await mongoose.connect('mongodb://localhost:27017/artOverflow')
-  console.log('conectou!!!!!')
+
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
+    dialect: 'mysql'
+})
+
+try {
+    sequelize.authenticate()
+    console.log('Conectou')
+} catch(err) {
+    console.log(err)
 }
 
-main()
-
-module.exports = mongoose
+module.exports = sequelize

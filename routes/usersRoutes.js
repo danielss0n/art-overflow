@@ -1,18 +1,10 @@
 const express = require('express')
-const userController = require('../controllers/userController')
-const postController = require('../controllers/postController')
+const usersController = require('../controllers/usersController')
 const router = express.Router()
-const { imageUpload } = require('../helpers/image-upload')
 
-router.get('/register', userController.registerPage)
-router.get('/login', userController.loginPage)
-router.post('/register', userController.register)
-router.post('/login', userController.login)
 
-router.get('/logout', userController.logout)
+router.get('/:name', usersController.showUser)
 
-router.post('/createpost',
-    imageUpload.single('image'), 
-    postController.posting)
+
 
 module.exports = router

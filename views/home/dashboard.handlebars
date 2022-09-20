@@ -1,3 +1,10 @@
 <div class="body-posts">
     <h1>Dashboard</h1>
+    {{#if emptyPosts}}
+        <p>Você não postou nada até agora. <a href="/posts/create">Postar</a></p>
+    {{else}}
+    {{#each posts}}
+        <a href="/posts/{{this.title}}">{{this.title}}</a>
+    {{/each}}
+    {{/if}}
 </div>
