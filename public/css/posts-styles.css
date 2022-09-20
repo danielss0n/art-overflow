@@ -38,6 +38,10 @@
     padding: 10px;
 }
 
+.post-title {
+    margin: 0;
+}
+
 .user-img {
     height: 50px;
     width: 50px;

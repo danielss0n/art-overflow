@@ -8,8 +8,8 @@ html {
 }
 
 body {
-    --b: rgb(250, 206, 118);
-    --b2:rgb(243, 178, 99);
+    --b: rgb(235, 235, 235);
+    --b2:rgb(234, 166, 83);
     --bg: rgb(249, 249, 249);
     --bg2: rgb(235, 235, 235);
     --p: rgb(41, 41, 41);
@@ -76,7 +76,7 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--b);
+    color: var(--p);
 }
 
 ul {
@@ -121,7 +121,7 @@ li {
  
     height: 100%;
     float: right;
-
+    color: var(--p);
     background-color: var(--b);
     transition: 0.2s;
 }
@@ -132,7 +132,7 @@ li:hover {
 
 li a {
     text-decoration: none;
-    color: var(--bg);
+    color: var(--p);
     display: block;
     margin-top: 12px;
     margin-right: 10px;

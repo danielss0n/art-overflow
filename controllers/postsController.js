@@ -37,6 +37,9 @@ module.exports = class postController {
     static async dashboard(req, res) {
         const userId = req.session.userid;
 
+        
+    
+
         const user = await User.findOne({
             where: {
                 id: userId,
@@ -45,12 +48,11 @@ module.exports = class postController {
             plain: true,
         });
 
+        if (!user) {
+          return res.redirect("/login");
+        }
 
-
-    if (!user) {
-      res.redirect("/login");
-    }
-
+    
     const posts = user.Posts.map((result) => result.dataValues)
 
     
