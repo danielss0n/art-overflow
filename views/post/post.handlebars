@@ -1,4 +1,28 @@
 <div class="body-posts">
     <a href="/posts/dashboard">Voltar</a>
     <h1>{{post.title}}</h1>
+
+    <div class="comments">
+        <form action="/posts/comment/{{post.title}}" method="post">
+            <textarea class="comment-text-area" name="comment" cols="30" rows="3"></textarea>
+            <input type="file" name="imageComment">
+            <input class="comment-btn" type="submit" value="Comentar">
+        </form>
+    </div>
+
+    <div class="comments-area">
+        {{#each posts}}
+            
+            <div class="comment">
+                <div class="user-container">
+                    <img src="" class="user-img">
+                    <a href="/users/{{this.User.name}}" class="user-name">{{this.User.name}}</a>
+                    <p class="user-level">{{this.User.skill}}</p>
+                </div>
+                <div class="comment-text">
+                    <p class="post-description">{{this.comment}}</p>
+                </div>
+            </div>
+        {{/each}}
+    </div>
 </div>

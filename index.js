@@ -71,7 +71,7 @@ app.use('/users', usersRoutes)
 
 
 conn
-  //.sync({ force: true})
+//   .sync({ force: true})
   .sync()
   .then(() => {
     app.listen(3000);

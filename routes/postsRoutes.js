@@ -10,6 +10,7 @@ router.get('/', postsController.showPosts)
 router.get('/dashboard', checkAuth, postsController.dashboard)
 router.get('/create', checkAuth, postsController.createPage)
 
+router.post('/comment/:title', postsController.comment)
 router.get('/:title', postsController.postPage)
 
 

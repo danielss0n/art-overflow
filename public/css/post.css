@@ -1,0 +1,20 @@
+.comments {
+    margin-top: 30px;
+
+}
+
+.comment-text-area {
+    width: 100%;
+
+
+
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: 1px solid rgb(163, 163, 163);
+}
+
+.comment-btn {
+    width: 40px;
+}

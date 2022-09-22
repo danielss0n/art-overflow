@@ -1,5 +1,7 @@
 const Post = require('../models/Post')
 const User = require('../models/User')
+const Comment = require('../models/Comment')
+var url = require('url');
 
 const bcrypt = require('bcrypt')
 const { imageUpload } = require('../helpers/image-upload')
@@ -104,6 +106,27 @@ module.exports = class postController {
             })
             .catch((err) => console.log(err))
 
+    }
+
+    static async comment(req, res) {
+      console.log("AAAAAA")
+
+      var url_title = await req.params.title
+
+      const post = await Post.findOne({where: {title: url_title}, raw: true})
+
+
+      const comment = {
+        comment: req.body.comment,
+        UserId: req.session.userid,
+        PostId: post.id
+      }
+
+      await Comment.create(comment)
+    
+      console.log(comment)
+
+      res.render('post/post',  {post, comment} )
     }
    
 }
