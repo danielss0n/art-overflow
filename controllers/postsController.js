@@ -151,6 +151,7 @@ module.exports = class postController {
         PostId: post.id
       }
 
+    
       await Comment.create(comment)
     
       console.log(comment)

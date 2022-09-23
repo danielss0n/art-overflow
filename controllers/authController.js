@@ -1,6 +1,6 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
-const sessionRedirect = require('../helpers/session-redirect')
+const {sessionRedirect} = require('../helpers/session-redirect')
 
 
 module.exports = class authController {
@@ -101,9 +101,7 @@ module.exports = class authController {
 
             req.session.userid = user.id
 
-            req.session.save(() => {
-                res.redirect('/posts')
-            })
+            sessionRedirect(req, res, '/posts')
         }
         //check password
         
