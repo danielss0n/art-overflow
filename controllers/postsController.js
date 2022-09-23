@@ -81,7 +81,8 @@ module.exports = class postController {
           return res.redirect("/login");
         }
 
-    
+        
+        console.log(user)
     const posts = user.Posts.map((result) => result.dataValues)
 
     
@@ -91,7 +92,7 @@ module.exports = class postController {
     }
     
     
-    res.render("home/dashboard" , { posts, emptyPosts } );
+    res.render("home/dashboard" , { posts, emptyPosts, user } );
     }
 
     static render(req, res) {

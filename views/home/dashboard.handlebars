@@ -1,10 +1,26 @@
-<div class="body-posts">
+<div class="body-profile">
+    
+
+    <div class="perfil">
+        <div class="user-info">
+            <img class="profile-pic" src="/img/profiles/{{user.dataValues.name}}">
+            <p class="profile-name">{{user.dataValues.name}}</p>
+            <p class="profile-skill">Skill: {{user.dataValues.skill}}</p>
+        </div>
+        
+        
+        <form action="/dashboard/updatepicture" method="post">
+            <input type="file" name="image">
+            <input type="submit" value="Atualizar foto">
+        </form>    
+    </div>
+
     <h1>Dashboard</h1>
-    {{#if emptyPosts}}
-        <p>Você não postou nada até agora. <a href="/posts/create">Postar</a></p>
-    {{else}}
-    {{#each posts}}
-        <a href="/posts/{{this.title}}">{{this.title}}</a>
-    {{/each}}
-    {{/if}}
+        {{#if emptyPosts}}
+            <p>Você não postou nada até agora. <a href="/posts/create">Postar</a></p>
+        {{else}}
+        {{#each posts}}
+            <a href="/posts/{{this.title}}">{{this.title}}</a>
+        {{/each}}
+        {{/if}}
 </div>

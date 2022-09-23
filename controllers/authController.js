@@ -86,7 +86,7 @@ module.exports = class authController {
 
             return
         }
-        console.log(user.password)
+        console.log(user)
         const passwordMatch = bcrypt.compareSync(password, user.password)
 
 
@@ -99,9 +99,13 @@ module.exports = class authController {
         } else {
             req.flash('message', 'parabens' )
 
+
             req.session.userid = user.id
 
-            sessionRedirect(req, res, '/posts')
+            req.session.save(() => {
+                res.redirect('/posts')
+            })
+
         }
         //check password
         

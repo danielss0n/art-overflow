@@ -116,13 +116,18 @@ ul {
 }
 
 li {
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     border-right: 1px solid var(--bg2);
  
     height: 100%;
     float: right;
+    
     color: var(--p);
     background-color: var(--b);
+
     transition: 0.2s;
 }
 
@@ -133,9 +138,11 @@ li:hover {
 li a {
     text-decoration: none;
     color: var(--p);
-    display: block;
-    margin-top: 12px;
-    margin-right: 10px;
+    padding: 10px;
+
+
+    margin: 0px;
+
 }
 
 h1{
@@ -151,7 +158,6 @@ label {
 }
 
 a {
-    margin-left: 10px;
     color: var(--b2);
 }
 
