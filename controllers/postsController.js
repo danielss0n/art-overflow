@@ -13,10 +13,37 @@ module.exports = class postController {
     static async postPage(req, res) {
       const title = req.params.title
 
-      const post = await Post.findOne({where: {title: title},raw: true})
-      res.render('post/post',  {post} )
+      
+
+      const post = await Post.findOne({include: Comment,where: {title: title},raw: true})
+
+
+      var comment = await Comment.findAll({
+        where: {
+            PostId: post.id,
+        },
+        include: User,
+     
+          raw: true,
+        })
+
+        Comment.findAll({
+          where: {
+            PostId: post.id,
+          },
+          include: User
+        }).then((data) => {
+    
+          const comments = data.map((result) => result.get({ plain: true }))
+          
+          res.render('post/post', { post, comments })
+        })
+  
+        
+      
     }
 
+    
     static createPage(req, res) {
       res.render('post/postingPage')
     }
@@ -101,7 +128,8 @@ module.exports = class postController {
               }
       
               const posts = data.map((result) => result.get({ plain: true }))
-      
+              
+              console.log(posts)
               res.render('home/posts', { posts, postsQty, search })
             })
             .catch((err) => console.log(err))
@@ -115,6 +143,7 @@ module.exports = class postController {
 
       const post = await Post.findOne({where: {title: url_title}, raw: true})
 
+      console.log(post.id)
 
       const comment = {
         comment: req.body.comment,
@@ -126,7 +155,7 @@ module.exports = class postController {
     
       console.log(comment)
 
-      res.render('post/post',  {post, comment} )
+      sessionRedirect(req, res, `/posts/${url_title}`)
     }
    
 }
